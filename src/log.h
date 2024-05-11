@@ -34,7 +34,6 @@ class logger {
 		const char *log_file;
 		void log(int level, const char *message);
 		void add_callback_file(string file);
-		void show_callback_files();
 		void set_log_file(ofstream &file);
 };
 #endif
