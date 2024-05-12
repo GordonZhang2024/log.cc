@@ -5,6 +5,7 @@ A simple logging library for C++
 copy `src/log.cc` and `src/log.h` to your source directory.
 ### example
 ```cpp
+#include "log.h"
 
 int main()
 {
