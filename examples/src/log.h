@@ -10,7 +10,7 @@
 #define TRACE 		0 
 #define DEBUG 		1
 #define INFO 		2
-#define WARNINNG 	3
+#define WARNING 	3
 #define ERROR 		4
 #define FATAL 		5
 
@@ -34,7 +34,9 @@ class logger {
 		const char *log_file;
 		void log(int level, const char *message);
 		void add_callback_file(string file);
-		void show_callback_files();
 		void set_log_file(ofstream &file);
+        void set_log_level(int level);
+    private:
+        int log_level = 0;
 };
 #endif

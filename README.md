@@ -25,3 +25,8 @@ int main()
 > - FATAL
 
 **The full example is in the `example/` directory.**
+
+#### Setting the log level
+You can use the `set_log_level` function.
+example: `l.set_log_level(WARNING);`
+

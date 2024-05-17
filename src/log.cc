@@ -11,14 +11,20 @@ void logger::log(int level, const char *message)
 	string level_text = levels[level];
 	string level_color = level_colors[level];
 
-	ofstream log(log_file);
+    if (level >= log_level) {
+        ofstream log(log_file);
 
-	clog << level_color << level_text << NORMAL		<< TAB
-	     << BOLD << formated_time << NORMAL		<< TAB
-	     << message					<< endl;
-	
-	log << level 		<< TAB
-	    << formated_time 	<< TAB
-	    << message 		<< endl;
+        clog << level_color << level_text << NORMAL		<< TAB
+             << BOLD << formated_time << NORMAL		<< TAB
+             << message					<< endl;
+        
+        log << level 		<< TAB
+            << formated_time 	<< TAB
+            << message 		<< endl;
+    }
 }
 
+void logger::set_log_level(int level)
+{
+    log_level = level;
+}
