@@ -35,8 +35,13 @@ class logger {
 		void log(int level, const char *message);
 		void add_callback_file(string file);
 		void set_log_file(ofstream &file);
-        void set_log_level(int level);
-    private:
-        int log_level = 0;
+        	void set_log_level(int level);
+		void disable();
+		void enable();
+		int get_log_level();
+	private:
+        	int log_level = 0;
+		bool enabled = true;
+
 };
 #endif

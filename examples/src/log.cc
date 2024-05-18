@@ -11,7 +11,7 @@ void logger::log(int level, const char *message)
 	string level_text = levels[level];
 	string level_color = level_colors[level];
 
-    if (level >= log_level) {
+    if (level >= log_level && enabled) {
         ofstream log(log_file);
 
         clog << level_color << level_text << NORMAL		<< TAB
@@ -27,4 +27,19 @@ void logger::log(int level, const char *message)
 void logger::set_log_level(int level)
 {
     log_level = level;
+}
+
+void logger::disable()
+{
+	enabled = false;
+}
+
+void logger::enable()
+{
+	enabled = true;
+}
+
+int logger::get_log_level()
+{
+	return log_level;
 }
