@@ -1,7 +1,7 @@
 # log.cc
 A simple logging library for C++
-## Usage
 
+## Usage
 copy `src/log.cc` and `src/log.h` to your source directory.
 ### example
 ```cpp
@@ -30,3 +30,7 @@ int main()
 You can use the `set_log_level` function.
 example: `l.set_log_level(WARNING);`
 
+#### Disable
+You can use the `disable` function.
+example: `l.disable();`
+To enable the logger again, use the `enable` function.
