@@ -14,9 +14,9 @@ void logger::log(int level, const char *message)
     if (level >= log_level && enabled) {
         ofstream log(log_file);
 
-        clog << level_color << level_text << NORMAL		<< TAB
-             << BOLD << formated_time << NORMAL		<< TAB
-             << message					<< endl;
+        clog << level_color 	<< level_text		<< NORMAL	<< TAB
+             << BOLD 		<< formated_time	<< NORMAL	<< TAB
+             << message							<< endl;
         
         log << level 		<< TAB
             << formated_time 	<< TAB
@@ -43,3 +43,4 @@ int logger::get_log_level()
 {
 	return log_level;
 }
+

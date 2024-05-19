@@ -32,8 +32,7 @@ class logger {
 			log_file = filename;
 		}
 		const char *log_file;
-		void log(int level, const char *message);
-		void add_callback_file(string file);
+		void log(int level, __FILE__, __LINE__, const char *format);
 		void set_log_file(ofstream &file);
         	void set_log_level(int level);
 		void disable();
