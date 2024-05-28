@@ -32,7 +32,9 @@ class logger {
 			log_file = filename;
 		}
 		const char *log_file;
-		void log(int level, const char *format);
+		void log(int level, const char *text);
+		void log(int level, int text);
+		void log(int level, double text);
 		void set_log_file(ofstream &file);
         void set_log_level(int level);
 		void disable();

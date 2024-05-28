@@ -22,5 +22,7 @@ int main()
 	l.set_log_level(WARNING);
 	l.log(INFO, "This message will never be shown."); // This message will never be shown because Its level is too low.
 
+    l.log(WARNING, 1);
+
 	return 0;
 }
