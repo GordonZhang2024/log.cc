@@ -35,13 +35,13 @@ void logger::log(int level, int message)
     if (level >= log_level && enabled) {
         ofstream log_output(log_file);
 
-        clog << level_color 	<< level_text		<< NORMAL	<< TAB
+        clog << level_color << level_text		<< NORMAL	<< TAB
              << BOLD 		<< formated_time	<< NORMAL	<< TAB
              << message							<< endl;
         
-        log_output << level 		<< TAB
+        log_output << level		<< TAB
             << formated_time 	<< TAB
-            << message 		<< endl;
+            << message          << endl;
     }
 }
 
@@ -56,13 +56,13 @@ void logger::log(int level, double message)
     if (level >= log_level && enabled) {
         ofstream log_output(log_file);
 
-        clog << level_color 	<< level_text		<< NORMAL	<< TAB
+        clog << level_color	<< level_text		<< NORMAL	<< TAB
              << BOLD 		<< formated_time	<< NORMAL	<< TAB
              << message							<< endl;
         
-        log_output << level 		<< TAB
+        log_output << level		<< TAB
             << formated_time 	<< TAB
-            << message 		<< endl;
+            << message          << endl;
     }
 }
 
