@@ -1,6 +1,15 @@
 #include "log.h"
 
-string levels[6] = {"TRACE", "DEBUG", "INFO", "WARNINNG","ERROR", "FATAL"};
+class log_stream {
+    public:
+        log_stream(int level)
+        {
+            level = level;
+        }
+        int level;
+};
+
+string levels[6] = {"TRACE", "DEBUG", "INFO", "WARNING","ERROR", "FATAL"};
 string level_colors[6] = {"\x1b[94m", "\x1b[36m", "\x1b[32m", "\x1b[33m", "\x1b[31m", "\x1b[35m"};
 
 void logger::log(int level, const char *message)

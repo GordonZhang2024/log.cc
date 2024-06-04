@@ -25,6 +25,8 @@ using std::endl;
 using std::vector;
 using std::string;
 
+class logstream;
+
 class logger {
 	public:
 		logger(const char *filename)
