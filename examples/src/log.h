@@ -6,7 +6,7 @@
 #include <ctime>
 #include <cassert>
 
-#define TRACE 		0 
+#define TRACE 		0
 #define DEBUG 		1
 #define INFO 		2
 #define WARNING 	3
@@ -22,13 +22,21 @@ using std::cout;
 using std::endl;
 using std::string;
 
-class logstream;
+class logstream {
+    public:
+        logstream(int set_stream_level)
+        {
+            stream_level = set_stream_level;
+        }
+        int stream_level;
+};
 
 class logger {
 	public:
 		logger(const char *filename)
 		{
 			log_file = filename;
+			logstream *log_fatal = new logstream(1);
 		}
 
 		const char *log_file;
@@ -48,7 +56,7 @@ class logger {
         logstream log_warning(WARNING);
         logstream log_error(ERROR);
         */
-        logstream log_f(1);
+
 	private:
         int log_level = 0;
 		bool enabled = true;

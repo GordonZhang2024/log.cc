@@ -1,14 +1,5 @@
 #include "log.h"
 
-class log_stream {
-    public:
-        log_stream(int set_stream_level)
-        {
-            stream_level = set_stream_level;
-        }
-        int stream_level;
-};
-
 string levels[6] = {"TRACE", "DEBUG", "INFO", "WARNING","ERROR", "FATAL"};
 string level_colors[6] = {"\x1b[94m", "\x1b[36m", "\x1b[32m", "\x1b[33m", "\x1b[31m", "\x1b[35m"};
 

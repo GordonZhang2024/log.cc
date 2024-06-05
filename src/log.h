@@ -22,7 +22,14 @@ using std::cout;
 using std::endl;
 using std::string;
 
-class logstream;
+class logstream {
+    public:
+        logstream(int set_stream_level)
+        {
+            stream_level = set_stream_level;
+        }
+        int stream_level;
+};
 
 class logger {
 	public:
