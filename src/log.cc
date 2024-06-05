@@ -2,11 +2,11 @@
 
 class log_stream {
     public:
-        log_stream(int level)
+        log_stream(int set_stream_level)
         {
-            level = level;
+            stream_level = set_stream_level;
         }
-        int level;
+        int stream_level;
 };
 
 string levels[6] = {"TRACE", "DEBUG", "INFO", "WARNING","ERROR", "FATAL"};
@@ -23,7 +23,7 @@ void logger::log(int level, const char *message)
     if (level >= log_level && enabled) {
         ofstream log_output(log_file);
 
-        clog << level_color 	<< level_text		<< NORMAL	<< TAB
+        std::clog << level_color 	<< level_text		<< NORMAL	<< TAB
              << BOLD 		<< formated_time	<< NORMAL	<< TAB
              << message							<< endl;
         
@@ -44,7 +44,7 @@ void logger::log(int level, int message)
     if (level >= log_level && enabled) {
         ofstream log_output(log_file);
 
-        clog << level_color << level_text		<< NORMAL	<< TAB
+        std::clog << level_color << level_text		<< NORMAL	<< TAB
              << BOLD 		<< formated_time	<< NORMAL	<< TAB
              << message							<< endl;
         
@@ -65,7 +65,7 @@ void logger::log(int level, double message)
     if (level >= log_level && enabled) {
         ofstream log_output(log_file);
 
-        clog << level_color	<< level_text		<< NORMAL	<< TAB
+        std::clog << level_color	<< level_text		<< NORMAL	<< TAB
              << BOLD 		<< formated_time	<< NORMAL	<< TAB
              << message							<< endl;
         

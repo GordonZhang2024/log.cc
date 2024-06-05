@@ -2,7 +2,6 @@
 #define LOG_H
 #include <iostream>
 #include <fstream>
-#include <vector>
 #include <string>
 #include <ctime>
 #include <cassert>
@@ -15,11 +14,10 @@
 #define FATAL 		5
 
 #define TAB 		"\t"
-#define NORMAL "\x1b[0m"
-#define BOLD "\x1b[1m"
+#define NORMAL      "\x1b[0m"
+#define BOLD        "\x1b[1m"
 
 using std::ofstream;
-using std::clog;
 using std::cout;
 using std::endl;
 using std::vector;
@@ -33,6 +31,7 @@ class logger {
 		{
 			log_file = filename;
 		}
+
 		const char *log_file;
 		void log(int level, const char *text);
 		void log(int level, int text);
@@ -42,6 +41,15 @@ class logger {
 		void disable();
 		void enable();
 		int get_log_level();
+
+        /*
+        logstream log_trace(TRACE);
+        logstream log_debug(DEBUG);
+        logstream log_info(INFO);
+        logstream log_warning(WARNING);
+        logstream log_error(ERROR);
+        */
+        logstream log_f(1);
 	private:
         int log_level = 0;
 		bool enabled = true;
