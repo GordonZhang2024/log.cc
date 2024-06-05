@@ -20,7 +20,6 @@
 using std::ofstream;
 using std::cout;
 using std::endl;
-using std::vector;
 using std::string;
 
 class logstream;
