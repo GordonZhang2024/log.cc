@@ -4,6 +4,7 @@
 #include <fstream>
 #include <ctime>
 #include <cassert>
+#include <initializer_list>
 
 #define TRACE 		0
 #define DEBUG 		1
@@ -16,23 +17,11 @@
 #define NORMAL      "\x1b[0m"
 #define BOLD        "\x1b[1m"
 
-class logstream {
-    public:
-        logstream(int set_stream_level)
-        {
-            stream_level = set_stream_level;
-        }
-
-        logstream();
-        int stream_level;
-};
-
 class logger {
 	public:
 		logger(const char *filename)
 		{
 			log_file = filename;
-			logstream *logstream_fatal = new logstream(1);
 		}
 
 		const char *log_file;
@@ -44,7 +33,7 @@ class logger {
 		void disable();
 		void enable();
 		int get_log_level();
-    		
+		
 
 	private:
 		int log_level = 0;
