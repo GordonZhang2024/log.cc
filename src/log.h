@@ -25,9 +25,9 @@ class logger {
 		}
 
 		const char *log_file;
-		void log(int level, const char *text);
-		void log(int level, int text);
-		void log(int level, double text);
+		void log(int level, const char *text, bool prompt=true);
+		void log(int level, int text, bool prompt=true);
+		void log(int level, double text, bool prompt=true);
 		void set_log_file(std::ofstream &file);
 		void set_log_level(int level);
 		void disable();

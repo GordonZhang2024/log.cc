@@ -3,7 +3,7 @@
 std::string levels[6] = {"TRACE", "DEBUG", "INFO", "WARNING","ERROR", "FATAL"};
 std::string level_colors[6] = {"\x1b[94m", "\x1b[36m", "\x1b[32m", "\x1b[33m", "\x1b[31m", "\x1b[35m"};
 
-void logger::log(int level, const char *message)
+void logger::log(int level, const char *message, bool prompt)
 {
 	assert(level <= 5);
 	time_t time_now = time(0);
@@ -14,17 +14,20 @@ void logger::log(int level, const char *message)
     if (level >= log_level && enabled) {
         std::ofstream log_output(log_file);
 
-        std::clog << level_color    <<level_text		<< NORMAL	<< TAB
-                  << BOLD 		    << formated_time	<< NORMAL	<< TAB
-                  << message							<< std::endl;
+        std::clog << level_color    << (prompt ? level_text : "")	 << NORMAL	<< TAB
+                  << BOLD 		    << (prompt ? formated_time : "") << NORMAL	<< TAB
+                  << message                  << std::endl;
+
+        std::clog << std::endl;
         
-        log_output << level 		<< TAB
-                   << formated_time	<< TAB
-        	       << message 		<< std::endl;
+        log_output << (prompt ? level_text : "")         << TAB
+                   << (prompt ? formated_time : "")	<< TAB
+        	       << message 	                	<< std::endl;
+        log_output << std::endl;
     }
 }
 
-void logger::log(int level, int message)
+void logger::log(int level, int message, bool prompt)
 {
 	assert(level <= 5);
 	time_t time_now = time(0);
@@ -35,17 +38,19 @@ void logger::log(int level, int message)
     if (level >= log_level && enabled) {
         std::ofstream log_output(log_file);
 
-        std::clog << level_color<< level_text		<< NORMAL	<< TAB
-            	  << BOLD 		<< formated_time	<< NORMAL	<< TAB
-            	  << message						<< std::endl;
-        
-        log_output << level		<< TAB
-        	   << formated_time << TAB
-        	   << message		<< std::endl;
+        std::clog << level_color<< (prompt ? level_text : "")	 << NORMAL	<< TAB
+            	  << BOLD 		<< (prompt ? formated_time : "") << NORMAL	<< TAB
+            	  << message						                        << std::endl;
+        std::clog << std::endl;
+
+        log_output << (prompt ? level_text : "")         << TAB
+                   << (prompt ? formated_time : "")	<< TAB
+        	       << message 	                	<< std::endl;
+        log_output << std::endl;
     }
 }
 
-void logger::log(int level, double message)
+void logger::log(int level, double message, bool prompt)
 {
 	assert(level <= 5);
 	time_t time_now = time(0);
@@ -55,14 +60,15 @@ void logger::log(int level, double message)
 
     if (level >= log_level && enabled) {
         std::ofstream log_output(log_file);
+        std::clog << level_color<< (prompt ? level_text : "")	 << NORMAL	<< TAB
+            	  << BOLD 		<< (prompt ? formated_time : "") << NORMAL	<< TAB
+            	  << message						                        << std::endl;
+        std::clog << std::endl;
 
-        std::clog << level_color << level_text		<< NORMAL	<< TAB
-            	  << BOLD 		 << formated_time	<< NORMAL	<< TAB
-            	  << message						            << std::endl;
-        
-        log_output << level		<< TAB
-        	   << formated_time << TAB
-        	   << message       << std::endl;
+        log_output << (prompt ? level_text : "")         << TAB
+                   << (prompt ? formated_time : "")	<< TAB
+        	       << message 	                	<< std::endl;
+        log_output << std::endl;
     }
 }
 
