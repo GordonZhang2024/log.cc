@@ -36,8 +36,8 @@ void logger::log(int level, const char *message, bool prompt)
 	std::string level_color = level_colors[level];
 
     if (level >= log_level && enabled) {
-        std::ofstream log_output(log_file);
-
+        std::ofstream log_output;
+        log_output.open(log_file, std::ios::app);
         std::clog << level_color    << (prompt ? level_text : "")	 << NORMAL	<< TAB
                   << BOLD 		    << (prompt ? formated_time : "") << NORMAL	<< TAB
                   << message                  << std::endl;
@@ -60,7 +60,8 @@ void logger::log(int level, int message, bool prompt)
 	std::string level_color = level_colors[level];
 
     if (level >= log_level && enabled) {
-        std::ofstream log_output(log_file);
+        std::ofstream log_output;
+        log_output.open(log_file,std::ios::app);
 
         std::clog << level_color<< (prompt ? level_text : "")	 << NORMAL	<< TAB
             	  << BOLD 		<< (prompt ? formated_time : "") << NORMAL	<< TAB
@@ -83,10 +84,12 @@ void logger::log(int level, double message, bool prompt)
 	std::string level_color = level_colors[level];
 
     if (level >= log_level && enabled) {
-        std::ofstream log_output(log_file);
+        std::ofstream log_output;
+        log_output.open(log_file,std::ios::app);
         std::clog << level_color<< (prompt ? level_text : "")	 << NORMAL	<< TAB
-            	  << BOLD 		<< (prompt ? formated_time : "") << NORMAL	<< TAB
-            	  << message						                        << std::endl;
+            	  << BOLD 		<< (prompt ? formated_time : "") << NORMAL	<< TAB;
+
+        printf("%lf\n", message);
         std::clog << std::endl;
 
         log_output << (prompt ? level_text : "")         << TAB

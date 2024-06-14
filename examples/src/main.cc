@@ -49,8 +49,10 @@ int main()
 	// Now only the messages whose level >= WARNING can be shown.
 	l.set_log_level(WARNING);
 	l.log(INFO, "This message will never be shown."); // This message will never be shown because Its level is too low.
-
-	l.log(WARNING, 1); // you can use an integer as the message.
+	l.log(WARNING, 1); // you can use an integer or double as the message.
+    l.log(WARNING, 1.1);
+    std::cout << ">> TIPS You can use an integer or double(float) as the log message." << std::endl;
+    std::cout << std::endl;
 
 	// You can't see the prompt(time, log level) in this log message.
 	l.log(WARNING, "This message contains no prompt", false);
