@@ -1,6 +1,7 @@
 # log.cc
 A simple logging library for C++
 ## This is a mirror from [log.cc on GitHub](https://github.com/GordonZhang2024/log.cc)
+*This may not be up-to-date. To get the lastest version, please go to GitHub.*
 
 ## Usage
 copy `src/log.cc` and `src/log.h` to your source directory.
