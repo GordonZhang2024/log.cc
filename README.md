@@ -27,7 +27,7 @@ int main()
 **The full example is in the `example/` directory.**
 
 #### Want to format the output?
-You can use function `sprintf()` which is included in <cstdio>.
+You can use function `sprintf()` in <cstdio>.
 
 #### Setting the log level
 You can use the `set_log_level` function.
