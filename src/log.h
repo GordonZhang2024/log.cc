@@ -45,22 +45,24 @@ class logger {
 		logger(const char *filename)
 		{
 			log_file = filename;
+            lock = false;
+            enabled = true;
 		}
 
-		const char *log_file;
-		void log(int level, const char *text, bool prompt=true);
-		void log(int level, int text, bool prompt=true);
-		void log(int level, double text, bool prompt=true);
-		void set_log_file(std::ofstream &file);
-		void set_log_level(int level);
-		void disable();
-		void enable();
-		int get_log_level();
+		const char  *log_file;
+		void        log(int level, const char   *text,  bool prompt=true);
+		void        log(int level, int          text,   bool prompt=true);
+		void        log(int level, double       text,   bool prompt=true);
+		void        set_log_file(std::ofstream &file);
+		void        set_log_level(int level);
+		void        disable();
+		void        enable();
+		int         get_log_level();
 		
-
 	private:
 		int log_level = 0;
-		bool enabled = true;
+        bool lock;
+		bool enabled;
 
 };
 #endif

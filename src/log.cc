@@ -35,7 +35,22 @@ void logger::log(int level, const char *message, bool prompt)
 	std::string level_text = levels[level];
 	std::string level_color = level_colors[level];
 
+    /* If current message is important enough(current level > log level)
+     * and the logger is enabled.
+     * The logger shouln't be locked.
+     * (
+     *  when another process is creating a log message, the logger will
+     *  be locked.
+     * )
+     * The lock is used to prevent multiple log messages written in the same time.
+     */
+    
+    // Wait until unlock.
+    while (lock) {
+        /* Do nothing. Just wait.*/
+    }
     if (level >= log_level && enabled) {
+        lock = true;
         std::ofstream log_output;
         log_output.open(log_file, std::ios::app);
         std::clog << level_color    << (prompt ? level_text : "")	 << NORMAL	<< TAB
@@ -48,6 +63,9 @@ void logger::log(int level, const char *message, bool prompt)
                    << (prompt ? formated_time : "")	<< TAB
         	       << message 	                	<< std::endl;
         log_output << std::endl;
+
+        // Unlock.
+        lock = false;
     }
 }
 
@@ -59,7 +77,10 @@ void logger::log(int level, int message, bool prompt)
 	std::string level_text = levels[level];
 	std::string level_color = level_colors[level];
 
+    while(lock) {}
+
     if (level >= log_level && enabled) {
+        lock = true;
         std::ofstream log_output;
         log_output.open(log_file,std::ios::app);
 
@@ -72,6 +93,8 @@ void logger::log(int level, int message, bool prompt)
                    << (prompt ? formated_time : "")	<< TAB
         	       << message 	                	<< std::endl;
         log_output << std::endl;
+
+        lock = false;
     }
 }
 
@@ -83,7 +106,10 @@ void logger::log(int level, double message, bool prompt)
 	std::string level_text = levels[level];
 	std::string level_color = level_colors[level];
 
+    while(lock) {}
+
     if (level >= log_level && enabled) {
+        lock = true;
         std::ofstream log_output;
         log_output.open(log_file,std::ios::app);
         std::clog << level_color<< (prompt ? level_text : "")	 << NORMAL	<< TAB
@@ -96,6 +122,8 @@ void logger::log(int level, double message, bool prompt)
                    << (prompt ? formated_time : "")	<< TAB
         	       << message 	                	<< std::endl;
         log_output << std::endl;
+
+        lock = false;
     }
 }
 
