@@ -28,6 +28,7 @@
 #include <fstream>
 #include <ctime>
 #include <cassert>
+#include <cstdarg>
 
 #define TRACE 		0
 #define DEBUG 		1
