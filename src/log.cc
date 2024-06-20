@@ -53,15 +53,15 @@ void logger::log(int level, const char *message, bool prompt)
         lock = true;
         std::ofstream log_output;
         log_output.open(log_file, std::ios::app);
-        std::clog << level_color	<< (prompt ? level_text : "")	 << NORMAL	<< TAB
-                  << BOLD		<< (prompt ? formated_time : "") << NORMAL	<< TAB
-                  << message								<< std::endl;
+        std::clog << level_color	<< (prompt ? level_text : "")		<< NORMAL	<< TAB
+                  << BOLD		<< (prompt ? formated_time : "")    	<< NORMAL	<< TAB
+                  << message									<< std::endl;
 
         std::clog << std::endl;
         
         log_output << (prompt ? level_text : "")	<< TAB
                    << (prompt ? formated_time : "")	<< TAB
-		   << message 	                	<< std::endl;
+                   << message				<< std::endl;
         log_output << std::endl;
 
         // Unlock.
@@ -84,14 +84,14 @@ void logger::log(int level, int message, bool prompt)
         std::ofstream log_output;
         log_output.open(log_file,std::ios::app);
 
-        std::clog << level_color	<< (prompt ? level_text : "")	 << NORMAL	<< TAB
-            	  << BOLD 		<< (prompt ? formated_time : "") << NORMAL	<< TAB
-            	  << message						                        << std::endl;
+        std::clog << level_color	<< (prompt ? level_text : "")   	<< NORMAL	<< TAB
+            	  << BOLD 		<< (prompt ? formated_time : "")	<< NORMAL	<< TAB
+            	  << message									<< std::endl;
         std::clog << std::endl;
 
         log_output << (prompt ? level_text : "")	<< TAB
                    << (prompt ? formated_time : "")	<< TAB
-        	       << message 	                << std::endl;
+		   << message				<< std::endl;
         log_output << std::endl;
 
         lock = false;
@@ -112,7 +112,7 @@ void logger::log(int level, double message, bool prompt)
         lock = true;
         std::ofstream log_output;
         log_output.open(log_file,std::ios::app);
-        std::clog << level_color<< (prompt ? level_text : "")			<< NORMAL	<< TAB
+        std::clog << level_color	<< (prompt ? level_text : "")		<< NORMAL	<< TAB
             	  << BOLD 		<< (prompt ? formated_time : "")	<< NORMAL	<< TAB;
 
         printf("%lf\n", message);
@@ -120,7 +120,7 @@ void logger::log(int level, double message, bool prompt)
 
         log_output << (prompt ? level_text : "")	<< TAB
                    << (prompt ? formated_time : "")	<< TAB
-		   << message 	                	<< std::endl;
+                   << message                       	<< std::endl;
         log_output << std::endl;
 
         lock = false;
