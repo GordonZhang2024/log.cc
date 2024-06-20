@@ -113,12 +113,12 @@ void logger::log(int level, double message, bool prompt)
         	std::ofstream log_output;
         	log_output.open(log_file,std::ios::app);
         	std::clog	<< level_color	<< (prompt ? level_text : "")		<< NORMAL	<< TAB
-				<< BOLD 		<< (prompt ? formated_time : "")	<< NORMAL	<< TAB;
+				<< BOLD		<< (prompt ? formated_time : "")	<< NORMAL	<< TAB;
 
         	printf("%lf\n", message);
         	std::clog << std::endl;
 
-        	log_output	<< (prompt ? level_text : "")	<< TAB
+        	log_output	<< (prompt ? level_text : "")		<< TAB
                    		<< (prompt ? formated_time : "")	<< TAB
                    		<< message                       	<< std::endl;
         	log_output << std::endl;
