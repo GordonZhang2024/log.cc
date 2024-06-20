@@ -1,4 +1,5 @@
-/* log.cc | A simple logging library for C++
+/*
+ * log.cc | A simple logging library for C++
  * =========================================
  * License : MIT License
  * Copyright (c) 2024 Gordon Zhang
@@ -20,20 +21,30 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
-  */
+ */
 
 #include "log.h"
 
 std::string levels[6]		= {"TRACE", "DEBUG", "INFO", "WARNING","ERROR", "FATAL"};
 std::string level_colors[6]	= {"\x1b[94m", "\x1b[36m", "\x1b[32m", "\x1b[33m", "\x1b[31m", "\x1b[35m"};
 
-void logger::log(int level, const char *message, bool prompt)
+void logger::log(int level, const char *format, ...)
 {
+	va_list args;
+	va_start(args, format);
+
 	assert(level <= 5);
 	time_t time_now = time(0);
 	char *formated_time = ctime(&time_now);
 	std::string level_text = levels[level];
 	std::string level_color = level_colors[level];
+
+	
+
+	// Format the log message.
+	char message[999];
+	vsprintf(message, format, args);
+
 
 	/* If current message is important enough(current level > log level)
 	* and the logger is enabled.
@@ -50,99 +61,85 @@ void logger::log(int level, const char *message, bool prompt)
 	/* Do nothing. Just wait.*/
 	}
 	if (level >= log_level && enabled) {
-	lock = true;
-	std::ofstream log_output;
-	log_output.open(log_file, std::ios::app);
-	std::clog << level_color	<< (prompt ? level_text : "")		<< NORMAL	<< TAB
-		  << BOLD		<< (prompt ? formated_time : "")    	<< NORMAL	<< TAB
-		  << message									<< std::endl;
+		lock = true;
+		std::ofstream log_output;
+		log_output.open(log_file, std::ios::app);
+		std::clog << level_color	<< level_text		<< NORMAL	<< TAB
+			  << BOLD		<< formated_time    	<< NORMAL	<< TAB
+			  <<message							<< std::endl;
 
-	std::clog << std::endl;
+		std::clog << std::endl;
 
-	log_output << (prompt ? level_text : "")	<< TAB
-		   << (prompt ? formated_time : "")	<< TAB
-		   << message				<< std::endl;
-	log_output << std::endl;
+		log_output << level_text	<< TAB
+			   << formated_time	<< TAB
+			   <<message		<< std::endl;
+		log_output << std::endl;
 
-	// Unlock.
-	lock = false;
+		// Unlock.
+		lock = false;
 	}
+
+	va_end(args);
 }
 
-void logger::log(int level, int message, bool prompt)
-{
-	assert(level <= 5);
-	time_t time_now = time(0);
-	char *formated_time = ctime(&time_now);
-	std::string level_text = levels[level];
-	std::string level_color = level_colors[level];
-
-	while(lock) {}
-
-	if (level >= log_level && enabled) {
-	lock = true;
-	std::ofstream log_output;
-	log_output.open(log_file,std::ios::app);
-
-	std::clog << level_color	<< (prompt ? level_text : "")   	<< NORMAL	<< TAB
-		  << BOLD 		<< (prompt ? formated_time : "")	<< NORMAL	<< TAB
-		  << message									<< std::endl;
-	std::clog << std::endl;
-
-	log_output << (prompt ? level_text : "")	<< TAB
-		   << (prompt ? formated_time : "")	<< TAB
-		   << message				<< std::endl;
-	log_output << std::endl;
-
-	lock = false;
-	}
-}
-
-void logger::log(int level, double message, bool prompt)
-{
-	assert(level <= 5);
-	time_t time_now = time(0);
-	char *formated_time = ctime(&time_now);
-	std::string level_text = levels[level];
-	std::string level_color = level_colors[level];
-
-	while(lock) {}
-
-	if (level >= log_level && enabled) {
-        	lock = true;
-        	std::ofstream log_output;
-        	log_output.open(log_file,std::ios::app);
-        	std::clog	<< level_color	<< (prompt ? level_text : "")		<< NORMAL	<< TAB
-				<< BOLD		<< (prompt ? formated_time : "")	<< NORMAL	<< TAB;
-
-        	printf("%lf\n", message);
-        	std::clog << std::endl;
-
-        	log_output	<< (prompt ? level_text : "")		<< TAB
-                   		<< (prompt ? formated_time : "")	<< TAB
-                   		<< message                       	<< std::endl;
-        	log_output << std::endl;
-
-        	lock = false;
-    	}
-}
 
 void logger::set_log_level(int level)
 {
-    log_level = level;
+	/*
+	 * Set the log level.
+	 */
+
+	/*
+	 * What's the log level?
+	 * =====================
+	 *
+	 * Log level is a part of a logger.
+	 * A log message only appears when its level >= the logger's
+	 * log level.
+	 * 
+	 * For example, you can set it as ERROR if you don't want to see too 
+	 * much INFO message or DEBUG message.
+	 */
+
+	log_level = level;
 }
 
 void logger::disable()
 {
+	/*
+	 * Disable the logger.
+	 */
+
+	/*
+	 * You can use this function if you don't want to see any log message.
+	 * You can always enable the logger again with function enable().
+	 */
+
 	enabled = false;
 }
 
 void logger::enable()
 {
+	/*
+	 * This funciton it used to enable the logger again.
+	 * (
+	 * 	The logger is enabled when it is created.
+	 * 	You only need to use it when the logger is disabled by you with the disable() function.
+	 * )
+	 */
+
 	enabled = true;
 }
 
 int logger::get_log_level()
 {
 	return log_level;
+}
+
+
+void logger::clear_log()
+{
+	// Clear the log file.
+	std::ofstream fout(log_file);
+	fout << "";
 }

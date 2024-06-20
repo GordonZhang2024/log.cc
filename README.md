@@ -27,7 +27,10 @@ int main()
 **The full example is in the `example/` directory.**
 
 #### Want to format the output?
-You can use function `sprintf()` in `<cstdio>`.
+You can use the `log()` function in this way, just like `printf()`:
+```cpp
+l.log(WARNING, "%d", 1);
+```
 
 #### Setting the log level
 You can use the `set_log_level` function.

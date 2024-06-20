@@ -1,4 +1,5 @@
-/* log.cc | A simple logging library for C++
+/*
+ * log.cc | A simple logging library for C++
  * ========================================
  * License : MIT License
  * Copyright (c) 2024 Gordon Zhang
@@ -20,11 +21,12 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
-  */
+ */
 
 #ifndef LOG_H
 #define LOG_H
 #include <iostream>
+#include <cstdio>
 #include <fstream>
 #include <ctime>
 #include <cassert>
@@ -50,15 +52,14 @@ class logger {
 			enabled = true;
 		}
 
-		const char  *log_file;
-		void        log(int level, const char   *text,  bool prompt=true);
-		void        log(int level, int          text,   bool prompt=true);
-		void        log(int level, double       text,   bool prompt=true);
-		void        set_log_file(std::ofstream &file);
-		void        set_log_level(int level);
-		void        disable();
-		void        enable();
-		int         get_log_level();
+		const char	*log_file;
+		void		log(int level, const char   *message, ...);
+		void		clear_log();
+		void		set_log_file(std::ofstream &file);
+		void		set_log_level(int level);
+		void		disable();
+		void		enable();
+		int		get_log_level();
 		
 	private:
 		int log_level = 0;
