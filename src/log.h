@@ -46,8 +46,8 @@ class logger {
 		logger(const char *filename)
 		{
 			log_file = filename;
-            		lock = false;
-            		enabled = true;
+			lock = false;
+			enabled = true;
 		}
 
 		const char  *log_file;
@@ -62,7 +62,7 @@ class logger {
 		
 	private:
 		int log_level = 0;
-        bool lock;
+		bool lock;
 		bool enabled;
 
 };
