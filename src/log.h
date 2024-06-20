@@ -37,9 +37,9 @@
 #define ERROR 		4
 #define FATAL 		5
 
-#define TAB 		"\t"
-#define NORMAL      "\x1b[0m"
-#define BOLD        "\x1b[1m"
+#define TAB		"\t"
+#define NORMAL		"\x1b[0m"
+#define BOLD		"\x1b[1m"
 
 class logger {
 	public:
