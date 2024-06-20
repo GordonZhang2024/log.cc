@@ -46,7 +46,7 @@ void logger::log(int level, const char *format, ...)
 	
 
 	// Format the log message.
-	char message[999];
+	char message[9999];
 	vsprintf(message, format, args);
 
 
