@@ -33,9 +33,13 @@ void logger::log(int level, const char *format, ...)
 	va_list args;
 	va_start(args, format);
 
-	assert(level <= 5);
+	assert(level <= 5); // The log level shouldn't be >= 5.
+
+	// Get the time.
 	time_t time_now = time(0);
 	char *formated_time = ctime(&time_now);
+
+	// Get the log level string and log level color.
 	std::string level_text = levels[level];
 	std::string level_color = level_colors[level];
 
