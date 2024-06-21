@@ -58,19 +58,19 @@ class logger {
 		}
 
 		std::vector<const char*>	log_files;
-		void			log(int level, const char   *message, ...);
-		void			clear_log();
-		void			clear_log(int index);
-		void			set_log_file(std::ofstream &file);
-		void			set_log_level(int level);
-		void			disable();
-		void			enable();
-		int			get_log_level();
-		void			add_log_file(const char *filename);
+		void				log(int level, const char   *message, ...);
+		void				clear_log();
+		void				clear_log(int index);
+		void				set_log_file(std::ofstream &file);
+		void				set_log_level(int level);
+		void				disable();
+		void				enable();
+		int				get_log_level();
+		void				add_log_file(const char *filename);
 		
 	private:
-		int log_level = 0;
-		bool lock;
-		bool enabled;
+		int				log_level = 0;
+		bool				lock;
+		bool				enabled;
 };
 #endif

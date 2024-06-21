@@ -167,25 +167,6 @@ void logger::clear_log(int index)
 }
 
 
-char generate_filename(const char *name)
-{
-	/*
-	 * Generate a new log_file.
-	 * name is the master name of the log file.
-	 * For example, if name="testApp", the filename will be "testApp-<date + time>.txt"
-	 * The name is "log" by default.
-	 */
-
-	time_t time_now = time(0);
-	char *formatted_time = ctime(&time_now);
-	char *filename;
-
-	sprintf(filename, "%s-%s", name, formatted_time);
-
-	return *filename;
-}
-
-
 void logger::add_log_file(const char *log_file)
 {
 	log_files.push_back(log_file);
