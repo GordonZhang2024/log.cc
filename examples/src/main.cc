@@ -24,7 +24,8 @@
  */
 
 #include "log.h"
-#include <iostream>
+#include <iostream> // In fact, this line is unnecessary because <iostream> is already included in "log.h"
+#include <cstdlib>
 
 /*
  * This is the example program.
@@ -63,5 +64,5 @@ int main()
 	// You can't see the prompt(time, log level) in this log message.
 	l.log(INFO, "This message contains no prompt", false);
 
-	return 0;
+	return EXIT_SUCCESS;
 }

@@ -25,8 +25,8 @@
 
 #include "log.h"
 
-std::string levels[6]		= {"TRACE", "DEBUG", "INFO", "WARNING","ERROR", "FATAL"};
-std::string level_colors[6]	= {"\x1b[94m", "\x1b[36m", "\x1b[32m", "\x1b[33m", "\x1b[31m", "\x1b[35m"};
+std::string levels[6]		= {"TRACE",		"DEBUG",	"INFO",	"WARNING",	"ERROR",	"FATAL"};
+std::string level_colors[6]	= {"\x1b[94m",	"\x1b[36m",	"\x1b[32m",	"\x1b[33m",	"\x1b[31m",	"\x1b[35m"};
 
 void logger::log(int level, const char *format, ...)
 {
@@ -37,7 +37,7 @@ void logger::log(int level, const char *format, ...)
 
 	// Get the time.
 	time_t time_now = time(0);
-	char *formated_time = ctime(&time_now);
+	char *formatted_time = ctime(&time_now);
 
 	// Get the log level string and log level color.
 	std::string level_text = levels[level];
@@ -65,22 +65,25 @@ void logger::log(int level, const char *format, ...)
 	/* Do nothing. Just wait.*/
 	}
 	if (level >= log_level && enabled) {
-		lock = true;
-		std::ofstream log_output;
-		log_output.open(log_file, std::ios::app);
-		std::clog << level_color	<< level_text		<< NORMAL	<< TAB
-			  << BOLD		<< formated_time    	<< NORMAL	<< TAB
-			  <<message							<< std::endl;
+		for (int i = 0; i < log_files.size(); ++i) {
+			lock = true;
+			std::ofstream log_output;
+			const char *current_file = log_files[i];
+			log_output.open(current_file, std::ios::app);
+			std::clog << level_color	<< level_text		<< NORMAL	<< TAB
+				  << BOLD		<< formatted_time    	<< NORMAL	<< TAB
+				  <<message							<< std::endl;
 
-		std::clog << std::endl;
+			std::clog << std::endl;
 
-		log_output << level_text	<< TAB
-			   << formated_time	<< TAB
-			   <<message		<< std::endl;
-		log_output << std::endl;
+			log_output << level_text	<< TAB
+				   << formatted_time	<< TAB
+				   <<message		<< std::endl;
+			log_output << std::endl;
 
-		// Unlock.
-		lock = false;
+			// Unlock.
+			lock = false;
+		}
 	}
 
 	va_end(args);
@@ -143,7 +146,41 @@ int logger::get_log_level()
 
 void logger::clear_log()
 {
-	// Clear the log file.
-	std::ofstream fout(log_file);
+	// Clear all log files.
+	for (int i = 0; i < log_files.size(); ++i) {
+		std::ofstream fout(log_files[i]);
+		fout << "";
+	}
+}
+
+void logger::clear_log(int index)
+{
+	/*
+	 * Clear a spectific log file.
+	 * index should be the index of the log file,
+	 * for example, index=0 means the first log file.
+	 */
+
+	std::ofstream fout(log_files[index]);
 	fout << "";
 }
+
+
+char *generate_filename(const char *name)
+{
+	/*
+	 * Generate a new log_file.
+	 * name is the master name of the log file.
+	 * For example, if name="testApp", the filename will be "testApp-<date + time>.txt"
+	 * The name is "log" by default.
+	 */
+
+	time_t time_now = time(0);
+	char *formatted_time = ctime(&time_now);
+	char *filename;
+
+	sprintf(filename, "%s-%s", name, formatted_time);
+
+	return filename;
+}
+
