@@ -167,7 +167,7 @@ void logger::clear_log(int index)
 }
 
 
-char *generate_filename(const char *name)
+char generate_filename(const char *name)
 {
 	/*
 	 * Generate a new log_file.
@@ -182,7 +182,7 @@ char *generate_filename(const char *name)
 
 	sprintf(filename, "%s-%s", name, formatted_time);
 
-	return filename;
+	return *filename;
 }
 
 

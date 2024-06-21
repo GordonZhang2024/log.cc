@@ -45,7 +45,7 @@
 #define BOLD		"\x1b[1m"
 
 
-char *generate_filename(const char *name="log");
+char generate_filename(const char *name="log");
 
 
 class logger {

@@ -4,7 +4,8 @@ project(log.cc-example)
 
 add_executable(example src/log.cc src/main.cc)
 
-target_include_directories(example
+target_include_directories(
+	example
 	PUBLIC
 	src/
 )

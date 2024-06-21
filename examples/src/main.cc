@@ -55,7 +55,10 @@ int main()
 	// Set the log level to warning.
 	// Now only the messages whose level >= WARNING can be shown.
 	l.set_log_level(WARNING);
-	l.log(INFO, "This message will never be shown."); // This message will never be shown because Its level is too low.
+
+	// This message will never been shown because its level is too low.
+	l.log(INFO, "This message will never be shown.");
+
 	l.log(WARNING, "%d", 1); // you can use an integer or double as the message.
 	l.log(WARNING, "%d", 1.1);
 	std::cout << ">> TIPS You can use an integer or double(float) as the log message." << std::endl;
