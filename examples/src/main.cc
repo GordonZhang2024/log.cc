@@ -35,6 +35,8 @@ int main()
 {
 	logger l("log.txt");
 
+	l.add_log_file("another-log.txt"); // Add another log file
+
 	// Clear the existing log file.
 	l.clear_log();
 

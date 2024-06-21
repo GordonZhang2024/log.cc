@@ -66,6 +66,7 @@ class logger {
 		void			disable();
 		void			enable();
 		int			get_log_level();
+		void			add_log_file(const char *filename);
 		
 	private:
 		int log_level = 0;

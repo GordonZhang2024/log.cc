@@ -65,17 +65,18 @@ void logger::log(int level, const char *format, ...)
 	/* Do nothing. Just wait.*/
 	}
 	if (level >= log_level && enabled) {
+		lock = true;
+		std::clog << level_color	<< level_text		<< NORMAL	<< TAB
+			  << BOLD		<< formatted_time    	<< NORMAL	<< TAB
+			  <<message							<< std::endl;
+
+		std::clog << std::endl;
+
 		for (int i = 0; i < log_files.size(); ++i) {
-			lock = true;
 			std::ofstream log_output;
 			const char *current_file = log_files[i];
 			log_output.open(current_file, std::ios::app);
-			std::clog << level_color	<< level_text		<< NORMAL	<< TAB
-				  << BOLD		<< formatted_time    	<< NORMAL	<< TAB
-				  <<message							<< std::endl;
-
-			std::clog << std::endl;
-
+			lock = true;
 			log_output << level_text	<< TAB
 				   << formatted_time	<< TAB
 				   <<message		<< std::endl;
@@ -184,3 +185,8 @@ char *generate_filename(const char *name)
 	return filename;
 }
 
+
+void logger::add_log_file(const char *log_file)
+{
+	log_files.push_back(log_file);
+}
