@@ -1,6 +1,6 @@
 /*
  * log.cc | A simple logging library for C++
- * ========================================
+ * =========================================
  * License : MIT License
  * Copyright (c) 2024 Gordon Zhang
 
@@ -23,8 +23,8 @@
  * SOFTWARE.
  */
 
-#ifndef LOG_H
-#define LOG_H
+#ifndef LOG_H_
+#define LOG_H_
 #include <iostream>
 #include <cstdio>
 #include <fstream>
@@ -67,7 +67,7 @@ class logger {
 		void				enable();
 		int				get_log_level();
 		void				add_log_file(const char *filename);
-		
+
 	private:
 		int				log_level = 0;
 		bool				lock;

@@ -1,6 +1,6 @@
 /*
  * log.cc | A simple logging library for C++
- * ========================================
+ * =========================================
  * License : MIT License
  * Copyright (c) 2024 Gordon Zhang
 
