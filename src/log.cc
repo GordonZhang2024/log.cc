@@ -26,7 +26,7 @@
 #include "log.h"
 
 std::string levels[6]		= {"TRACE",		"DEBUG",	"INFO",		"WARNING",	"ERROR",	"FATAL"};
-std::string level_colors[6]	= {"\x1b[94m",		"\x1b[36m",	"\x1b[32m",	"\x1b[33m",	"\x1b[31m",	"\x1b[35m"};
+std::string level_colors[6]	= {"\x1b[94m",	"\x1b[36m",	"\x1b[32m",		"\x1b[33m",	"\x1b[31m",	"\x1b[35m"};
 
 void logger::log(int level, const char *format, ...)
 {
