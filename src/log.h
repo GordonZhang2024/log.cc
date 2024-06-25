@@ -74,3 +74,4 @@ class logger {
 		bool				enabled;
 };
 #endif
+

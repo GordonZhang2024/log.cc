@@ -171,3 +171,4 @@ void logger::add_log_file(const char *log_file)
 {
 	log_files.push_back(log_file);
 }
+
