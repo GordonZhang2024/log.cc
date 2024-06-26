@@ -3,17 +3,17 @@
  * =========================================
  * License : MIT License
  * Copyright (c) 2024 Gordon Zhang
-
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
-
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
-
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -30,6 +30,13 @@ std::string level_colors[6]	= {"\x1b[94m",	"\x1b[36m",	"\x1b[32m",		"\x1b[33m",	
 
 void logger::log(int level, const char *format, ...)
 {
+	/*
+	 * This is the master logging function.
+	 */
+
+	/*
+	 * Get the arguments.
+	 */
 	va_list args;
 	va_start(args, format);
 
@@ -72,9 +79,9 @@ void logger::log(int level, const char *format, ...)
 
 		std::clog << std::endl;
 
-		for (int i = 0; i < log_files.size(); ++i) {
+		for (int file = 0; file < log_files.size(); ++file) {
 			std::ofstream log_output;
-			const char *current_file = log_files[i];
+			const char *current_file = log_files[file];
 			log_output.open(current_file, std::ios::app);
 			lock = true;
 			log_output << level_text	<< TAB
@@ -105,10 +112,11 @@ void logger::set_log_level(int level)
 	 * A log message only appears when its level >= the logger's
 	 * log level.
 	 * 
-	 * For example, you can set it as ERROR if you don't want to see too 
+	 * For example, you can set it as ERROR if you don't want to see too
 	 * much INFO message or DEBUG message.
 	 */
 
+	assert(level <= 5); // The log level shouldn't be >= 5.
 	log_level = level;
 }
 
@@ -148,8 +156,8 @@ int logger::get_log_level()
 void logger::clear_log()
 {
 	// Clear all log files.
-	for (int i = 0; i < log_files.size(); ++i) {
-		std::ofstream fout(log_files[i]);
+	for (int file = 0; file < log_files.size(); ++file) {
+		std::ofstream fout(log_files[file]);
 		fout << "";
 	}
 }
