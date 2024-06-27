@@ -59,6 +59,12 @@ class logger {
 			enabled = true;
 		}
 
+		logger()
+		{
+			lock = false;
+			enabled = true;
+		}
+
 		std::vector<const char*>	log_files;
 		void				log(int level, const char   *message, ...);
 		void				clear_log();
