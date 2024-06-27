@@ -25,6 +25,7 @@
 
 #ifndef LOG_H_
 #define LOG_H_
+
 #include <iostream>
 #include <cstdio>
 #include <fstream>
@@ -33,6 +34,7 @@
 #include <cstdarg>
 #include <vector>
 
+// Availible log levels
 #define TRACE 		0
 #define DEBUG 		1
 #define INFO 		2
@@ -73,5 +75,5 @@ class logger {
 		bool				lock;
 		bool				enabled;
 };
-#endif
+#endif // LOG_H_
 
