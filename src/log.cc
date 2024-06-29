@@ -58,14 +58,14 @@ void logger::log(int level, const char *format, ...)
 
 
 	/* If current message is important enough(current level > log level)
-	* and the logger is enabled.
-	* The logger shouln't be locked.
-	* (
-	*  when another process is creating a log message, the logger will
-	*  be locked.
-	* )
-	* The lock is used to prevent multiple log messages written in the same time.
-	*/
+	 * and the logger is enabled.
+	 * The logger shouln't be locked.
+	 * (
+	 *  when another process is creating a log message, the logger will
+	 *  be locked.
+	 * )
+	 * The lock is used to prevent multiple log messages written in the same time.
+	 */
 
 	// Wait until unlock.
 	while (lock) {
