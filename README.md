@@ -30,7 +30,7 @@ int main()
 > - ERROR
 > - FATAL
 
-**The full example is in the `example/` directory.**
+**The full example is in the `example/` directory. You can find more useful functions from log.cc**
 
 #### Want to format the output?
 
