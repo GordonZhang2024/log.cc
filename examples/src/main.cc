@@ -29,6 +29,7 @@
 
 /*
  * This is the example program.
+ * You can learn how to use log.cc from it.
  */
 
 int main()
@@ -42,11 +43,13 @@ int main()
 
 	std::cout << "This is the example program for log.cc." << std::endl;
 	std::cout << std::endl;
-	
-	l.log(ERROR, "error message");
-	l.log(DEBUG, "debug message");
-	
-	// Disable the logger
+	l.log(TRACE, "Trace message"); 	
+	l.log(DEBUG, "Debug message");
+	l.log(INFO, "Info message");
+	l.log(WARNING , "Warning message");
+	l.log(ERROR, "Error message");
+	l.log(FATAL, "Fatal message");
+
 	l.disable();
 	l.log(DEBUG, "This message will never be shown."); // This message will never be shown.
 	
@@ -60,7 +63,7 @@ int main()
 	l.log(INFO, "This message will never be shown.");
 
 	l.log(WARNING, "%d", 1); // you can use an integer or double as the message.
-	l.log(WARNING, "%d", 1.1);
+	l.log(WARNING, "%f", 1.1);
 	std::cout << ">> TIPS You can use an integer or double(float) as the log message." << std::endl;
 	std::cout << std::endl;
 
@@ -68,6 +71,15 @@ int main()
 
 	// You can't see the prompt(time, log level) in this log message.
 	l.log(INFO, "This message contains no prompt", false);
+
+	std::cout	<< "Now you can take a look at the files in this directory." << std::endl
+			<< "You can find log.txt and another-log.txt" << std::endl
+			<< "They are all created by this program" << std::endl;
+
+	/*
+	 * That's all. I hope you will like this logging library.
+	 * :)
+	 */
 
 	return EXIT_SUCCESS;
 }
