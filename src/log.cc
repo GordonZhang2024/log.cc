@@ -42,7 +42,7 @@ void logger::log(int level, const char *format, ...)
 
 	assert(level <= 5); // The log level shouldn't be >= 5.
 
-	// Get the time.
+	// Get the time and format it.
 	time_t time_now = time(0);
 	char *formatted_time = ctime(&time_now);
 
@@ -110,7 +110,7 @@ void logger::set_log_level(int level)
 	 * Log level is a part of a logger.
 	 * A log message only appears when its level >= the logger's
 	 * log level.
-	 * 
+	 *
 	 * For example, you can set it as ERROR if you don't want to see too
 	 * much INFO message or DEBUG message.
 	 */
