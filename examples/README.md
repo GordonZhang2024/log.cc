@@ -1,14 +1,17 @@
-# log.cc example
+# Log.cc example
 
 This is the example for log.cc
 
 ## Build
+
 ### Requirements
 - C++ compiler (g++, clang++, ...)
 - CMake
 
 **Note that MSVC Compiler has not been tested, but it should work as well.**
-### Build
+
+### How to Build
+
 ```bash
 $ cmake -B build
 $ cd build/
