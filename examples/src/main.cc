@@ -61,8 +61,7 @@ int main()
 
 	// This message will never been shown because its level is too low.
 	l.log(INFO, "This message will never be shown.");
-
-  std::cout << std::endl;
+	std::cout << std::endl;
 
 	l.log(WARNING, "A number: %d", 1); // you can use an integer or double as the message.
 	l.log(WARNING, "A float: %f", 1.1);
