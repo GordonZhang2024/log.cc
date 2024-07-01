@@ -50,7 +50,6 @@ void logger::log(int level, const char *format, ...)
 	std::string level_text = levels[level];
 	std::string level_color = level_colors[level];
 
-	
 
 	// Format the log message.
 	char message[9999];
