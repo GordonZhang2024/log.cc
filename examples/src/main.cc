@@ -62,15 +62,14 @@ int main()
 	// This message will never been shown because its level is too low.
 	l.log(INFO, "This message will never be shown.");
 
-	l.log(WARNING, "%d", 1); // you can use an integer or double as the message.
-	l.log(WARNING, "%f", 1.1);
+  std::cout << std::endl;
+
+	l.log(WARNING, "A number: %d", 1); // you can use an integer or double as the message.
+	l.log(WARNING, "A float: %f", 1.1);
 	std::cout << ">> TIPS You can use an integer or double(float) as the log message." << std::endl;
 	std::cout << std::endl;
 
 	l.set_log_level(DEBUG);
-
-	// You can't see the prompt(time, log level) in this log message.
-	l.log(INFO, "This message contains no prompt", false);
 
 	std::cout	<< "Now you can take a look at the files in this directory." << std::endl
 			<< "You can find log.txt and another-log.txt" << std::endl
