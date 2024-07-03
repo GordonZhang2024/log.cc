@@ -51,6 +51,10 @@ You can use the `disable` function.
 Example: `l.disable();`
 To enable the logger again, use the `enable` function.
 
+#### More info
+
+You can view `log.cc` and `log.h` in the `src` dir.
+
 ## License
 
 MIT License
