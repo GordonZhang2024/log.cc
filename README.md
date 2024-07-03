@@ -57,5 +57,4 @@ You can view `log.cc` and `log.h` in the `src` dir.
 
 ## License
 
-MIT License
-
+[MIT License](https://github.com/GordonZhang2024/log.cc/blob/main/LICENSE)
