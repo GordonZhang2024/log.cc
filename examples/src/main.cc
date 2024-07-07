@@ -43,6 +43,8 @@ int main()
 
 	std::cout << "This is the example program for log.cc." << std::endl;
 	std::cout << std::endl;
+
+	// Some example messges.
 	l.log(TRACE, "Trace message"); 	
 	l.log(DEBUG, "Debug message");
 	l.log(INFO, "Info message");
@@ -51,12 +53,18 @@ int main()
 	l.log(FATAL, "Fatal message");
 
 	l.disable();
+	/*
+	 * Now the logger is disabed.
+	 * All the log messages will be ignored
+	 */
 	l.log(DEBUG, "This message will never be shown."); // This message will never be shown.
 	
 	// Enable the logger again
 	l.enable();
-	// Set the log level to warning.
-	// Now only the messages whose level >= WARNING can be shown.
+	/*
+	 * Set the log level to warning.
+	 *Now only the messages that are more important than WARNING (or as important as WARNING) can be shown.
+	 */
 	l.set_log_level(WARNING);
 
 	// This message will never been shown because its level is too low.
@@ -65,14 +73,22 @@ int main()
 
 	l.log(WARNING, "A number: %d", 1); // you can use an integer or double as the message.
 	l.log(WARNING, "A float: %f", 1.1);
-	std::cout << ">> TIPS You can use an integer or double(float) as the log message." << std::endl;
+	std::cout << ">> You can use an integer or double (float) as the log message." << std::endl;
 	std::cout << std::endl;
 
 	l.set_log_level(DEBUG);
+	
+	l.disable_terminal_output();
+	/*
+	 * Now the terminal output is disabled.
+	 * The log will only be written to the log file.
+	 */
+	l.log(INFO, "This message is only shown in the log file.");
+	l.enable_terminal_output(); //Enable the terminal output again.
 
 	std::cout	<< "Now you can take a look at the files in this directory." << std::endl
-			<< "You can find log.txt and another-log.txt" << std::endl
-			<< "They are all created by this program" << std::endl;
+			<< "You can find log.txt and another-log.txt." << std::endl
+			<< "They are all created by this program." << std::endl;
 
 	/*
 	 * That's all. I hope you will like this logging library.
