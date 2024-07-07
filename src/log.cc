@@ -70,13 +70,16 @@ void logger::log(int level, const char *format, ...)
 	while (lock) {
 	/* Do nothing. Just wait.*/
 	}
+	// Do terminal output if it is enabled.
 	if (level >= log_level && enabled) {
 		lock = true;
-		std::clog << level_color	<< level_text		<< NORMAL	<< TAB
-			  << BOLD		<< formatted_time    	<< NORMAL	<< TAB
-			  <<message							<< std::endl;
+		if (terminal_output_enabled) {
+			std::clog << level_color	<< level_text		<< NORMAL	<< TAB
+				  << BOLD		<< formatted_time    	<< NORMAL	<< TAB
+				  <<message							<< std::endl;
 
-		std::clog << std::endl;
+			std::clog << std::endl;
+		}
 
 		for (int file = 0; file < log_files.size(); ++file) {
 			std::ofstream log_output;
@@ -177,5 +180,19 @@ void logger::clear_log(int index)
 void logger::add_log_file(const char *log_file)
 {
 	log_files.push_back(log_file);
+}
+
+void logger::disable_terminal_output()
+{
+	/*
+	 * The log message will not be shown oon the terminal
+	 * if the terminal_output is disabled.
+	 */
+	terminal_output_enabled = false;
+}
+
+void logger::enable_terminal_output()
+{
+	terminal_output_enabled = true;
 }
 

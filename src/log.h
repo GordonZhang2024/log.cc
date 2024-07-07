@@ -57,6 +57,7 @@ class logger {
 			log_files.push_back(filename);
 			lock = false;
 			enabled = true;
+			terminal_output_enabled = true;
 		}
 
 		logger()
@@ -75,11 +76,14 @@ class logger {
 		void				enable();
 		int				get_log_level();
 		void				add_log_file(const char *filename);
+		void				disable_terminal_output();
+		void				enable_terminal_output();
 
 	private:
 		int				log_level = 0;
 		bool				lock;
 		bool				enabled;
+		bool				terminal_output_enabled;
 };
 #endif // LOG_H_
 
