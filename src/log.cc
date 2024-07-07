@@ -25,8 +25,16 @@
 
 #include "log.h"
 
-std::string levels[6]		= {"TRACE",		"DEBUG",	"INFO",		"WARNING",	"ERROR",	"FATAL"};
-std::string level_colors[6]	= {"\x1b[94m",	"\x1b[36m",	"\x1b[32m",		"\x1b[33m",	"\x1b[31m",	"\x1b[35m"};
+// Availible log levels and colors for them.
+std::string levels[6]		= {
+	"TRACE",    "DEBUG",    "INFO",
+	"WARNING",  "ERROR",    "FATAL"
+};
+std::string level_colors[6]	= {
+	"\x1b[94m", "\x1b[36m", "\x1b[32m",
+	"\x1b[33m", "\x1b[31m", "\x1b[35m"
+};
+
 
 void logger::log(int level, const char *format, ...)
 {
@@ -40,7 +48,7 @@ void logger::log(int level, const char *format, ...)
 	va_list args;
 	va_start(args, format);
 
-	assert(level <= 5); // The log level shouldn't be >= 5.
+	assert(level <= 5);  // The log level shouldn't be >= 5.
 
 	// Get the time and format it.
 	time_t time_now = time(0);
@@ -68,7 +76,7 @@ void logger::log(int level, const char *format, ...)
 
 	// Wait until unlock.
 	while (lock) {
-	/* Do nothing. Just wait.*/
+		/* Do nothing. Just wait.*/
 	}
 	// Do terminal output if it is enabled.
 	if (level >= log_level && enabled) {
@@ -122,6 +130,7 @@ void logger::set_log_level(int level)
 	log_level = level;
 }
 
+
 void logger::disable()
 {
 	/*
@@ -136,6 +145,7 @@ void logger::disable()
 	enabled = false;
 }
 
+
 void logger::enable()
 {
 	/*
@@ -149,20 +159,23 @@ void logger::enable()
 	enabled = true;
 }
 
+
 int logger::get_log_level()
 {
+	// Get the log level
 	return log_level;
 }
 
 
 void logger::clear_log()
 {
-	// Clear all log files.
+	// Clear all existing log files.
 	for (int file = 0; file < log_files.size(); ++file) {
 		std::ofstream fout(log_files[file]);
 		fout << "";
 	}
 }
+
 
 void logger::clear_log(int index)
 {
@@ -179,8 +192,13 @@ void logger::clear_log(int index)
 
 void logger::add_log_file(const char *log_file)
 {
+	/*
+	 * Add a log file.
+	 * The log message will me written to all the log files.
+	 */
 	log_files.push_back(log_file);
 }
+
 
 void logger::disable_terminal_output()
 {
@@ -191,8 +209,10 @@ void logger::disable_terminal_output()
 	terminal_output_enabled = false;
 }
 
+
 void logger::enable_terminal_output()
 {
+	// Enable the terminal output again.
 	terminal_output_enabled = true;
 }
 
