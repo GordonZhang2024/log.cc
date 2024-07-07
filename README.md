@@ -51,6 +51,15 @@ You can use the `disable` function.
 Example: `l.disable();`
 To enable the logger again, use the `enable` function.
 
+#### Disable the terminal output
+Sometimes, it's necessary to disable the terminal log output (especially when developing a GUI app, users don't want to see a terminal).
+
+```cpp
+l.disable_terminal_output();
+```
+
+To enable terminal output again, use the `enable_terminal_output` function.
+
 #### More info
 
 You can view `log.cc` and `log.h` in the `src` dir.
