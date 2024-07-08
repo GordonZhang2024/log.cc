@@ -27,6 +27,9 @@
 #include <iostream> // In fact, this line is unnecessary because <iostream> is already included in "log.h"
 #include <cstdlib>
 
+using std::cout;
+using std::endl;
+
 /*
  * This is the example program.
  * You can learn how to use log.cc from it.
@@ -41,8 +44,9 @@ int main()
 	// Clear the existing log file.
 	l.clear_log();
 
-	std::cout << "This is the example program for log.cc." << std::endl;
-	std::cout << std::endl;
+	cout << endl;
+	cout << "========== This is the example program for log.cc. =======================" << endl;
+	cout << endl;
 
 	// Some example messges.
 	l.log(TRACE, "Trace message"); 	
@@ -61,6 +65,7 @@ int main()
 	
 	// Enable the logger again
 	l.enable();
+
 	/*
 	 * Set the log level to warning.
 	 *Now only the messages that are more important than WARNING (or as important as WARNING) can be shown.
@@ -69,12 +74,12 @@ int main()
 
 	// This message will never been shown because its level is too low.
 	l.log(INFO, "This message will never be shown.");
-	std::cout << std::endl;
+	cout << endl;
 
 	l.log(WARNING, "A number: %d", 1); // you can use an integer or double as the message.
 	l.log(WARNING, "A float: %f", 1.1);
-	std::cout << ">> You can use an integer or double (float) as the log message." << std::endl;
-	std::cout << std::endl;
+	cout << ">> You can use an integer or double (float) as the log message." << endl;
+	cout << endl;
 
 	l.set_log_level(DEBUG);
 	
@@ -86,14 +91,20 @@ int main()
 	l.log(INFO, "This message is only shown in the log file.");
 	l.enable_terminal_output(); //Enable the terminal output again.
 
-	std::cout	<< "Now you can take a look at the files in this directory." << std::endl
-			<< "You can find log.txt and another-log.txt." << std::endl
-			<< "They are all created by this program." << std::endl;
+	cout	<< "Now you can take a look at the files in this directory."	<< endl
+			<< "You can find log.txt and another-log.txt."			<< endl
+			<< "They are all created by this program."			<< endl
+			<< "You can also find an extra log message which is not shown in the terminal."
+			<< endl;
 
 	/*
 	 * That's all. I hope you will like this logging library.
 	 * :)
 	 */
+
+	cout << endl;
+	cout << "==========================================================================" << endl;
+	cout << endl;
 
 	return EXIT_SUCCESS;
 }
