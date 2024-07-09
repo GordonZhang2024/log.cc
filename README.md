@@ -32,6 +32,8 @@ int main()
 
 **The full example is in the `example/` directory. You can find more useful functions from log.cc**
 
+*The following examples uses `l` as the default logger name.*
+
 #### Want to format the output?
 
 You can use the `log()` function in this way, just like `printf()`:
