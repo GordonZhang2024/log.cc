@@ -30,9 +30,9 @@ int main()
 > - ERROR
 > - FATAL
 
-**The full example is in the `example/` directory. You can find more useful functions from log.cc**
+**The full example is in the `example/` directory. You can find more useful functions from `log.cc`**
 
-*The following examples uses `l` as the default logger name.*
+*The following examples use `l` as the default logger name.*
 
 #### Want to format the output?
 
