@@ -42,9 +42,9 @@ You can use the `log()` function in this way, just like `printf()`:
 ```cpp
 l.log(WARNING, "%d", 1);
 ```
-
-### More info
-You can view the [Wiki page](https://github.com/GordonZhang2024/log.cc/wiki/Log.cc-usage)
+> [!TIP]
+> ### More info
+> You can view the [Wiki page](https://github.com/GordonZhang2024/log.cc/wiki/Log.cc-usage)
 
 
 ## License
