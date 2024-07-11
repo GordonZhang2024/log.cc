@@ -44,7 +44,7 @@ l.log(WARNING, "%d", 1);
 ```
 
 ### More info
-You can see the [Wiki page](https://github.com/GordonZhang2024/log.cc/wiki/Log.cc-usage)
+You can view the [Wiki page](https://github.com/GordonZhang2024/log.cc/wiki/Log.cc-usage)
 
 
 ## License
