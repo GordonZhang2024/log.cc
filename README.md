@@ -3,8 +3,10 @@
 A simple logging library for C++
 
 ## Usage
+Log.cc is very easy to use.
 
-Copy `src/log.cc` and `src/log.h` to your source directory.
+
+You only need  to copy `src/log.cc` and `src/log.h` to your own source directory.
 
 ### Example
 
@@ -17,7 +19,6 @@ int main()
     l.log(ERROR, "error message");
     return 0;
 }
-
 
 ```
 
@@ -34,7 +35,7 @@ int main()
 
 *The following examples use `l` as the default logger name.*
 
-#### Want to format the output?
+### Want to format the output?
 
 You can use the `log()` function in this way, just like `printf()`:
 
@@ -42,29 +43,9 @@ You can use the `log()` function in this way, just like `printf()`:
 l.log(WARNING, "%d", 1);
 ```
 
-#### Setting the log level
+### More info
+You can see the [Wiki page](https://github.com/GordonZhang2024/log.cc/wiki/Log.cc-usage)
 
-You can use the `set_log_level` function.
-Example: `l.set_log_level(WARNING);`
-
-#### Disable
-
-You can use the `disable` function.
-Example: `l.disable();`
-To enable the logger again, use the `enable` function.
-
-#### Disable the terminal output
-Sometimes, it's necessary to disable the terminal log output (especially when developing a GUI app, users don't want to see a terminal with plenty of messages).
-
-```cpp
-l.disable_terminal_output();
-```
-
-To enable terminal output again, use the `enable_terminal_output` function.
-
-#### More info
-
-You can view `log.cc` and `log.h` in the `src` dir.
 
 ## License
 
