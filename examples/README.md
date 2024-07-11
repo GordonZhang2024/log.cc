@@ -5,10 +5,8 @@ This is the example for log.cc
 ## Build
 
 ### Requirements
-- C++ compiler (g++, clang++, ...)
+- C++ compiler *(g++, clang++, ...)*
 - CMake
-
-**Note that MSVC Compiler has not been tested, but it should work as well.**
 
 ### How to Build
 
