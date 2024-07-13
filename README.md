@@ -6,7 +6,7 @@ A simple logging library for C++
 Log.cc is very easy to use.
 
 
-You only need  to copy `src/log.cc` and `src/log.h` to your own source directory.
+To use log.cc, you only need to copy `src/log.cc` and `src/log.h` to your own source directory.
 
 ### Example
 
