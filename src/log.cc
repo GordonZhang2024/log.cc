@@ -162,7 +162,12 @@ void logger::enable()
 
 int logger::get_log_level()
 {
-	// Get the log level
+	/* Get the log level
+	 * 
+	 * Return value
+	 * ============
+	 * Integer, the log level of the current logger.
+	 */
 	return log_level;
 }
 

@@ -56,6 +56,8 @@ int main()
 	l.log(ERROR, "Error message");
 	l.log(FATAL, "Fatal message");
 
+	cout << endl;
+
 	l.disable();
 	/*
 	 * Now the logger is disabed.
@@ -71,6 +73,10 @@ int main()
 	 *Now only the messages that are more important than WARNING (or as important as WARNING) can be shown.
 	 */
 	l.set_log_level(WARNING);
+
+	auto current_level = l.get_log_level();
+
+	l.log(WARNING, "Current log level: %d", current_level);
 
 	// This message will never been shown because its level is too low.
 	l.log(INFO, "This message will never be shown.");
