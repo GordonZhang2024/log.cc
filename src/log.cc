@@ -152,7 +152,8 @@ void logger::enable()
 	 * This funciton it used to enable the logger again.
 	 * (
 	 * 	The logger is enabled when it is created.
-	 * 	You only need to use it when the logger is disabled by you with the disable() function.
+	 * 	You only need to use it when the logger is disabled by you
+	 *  with the disable() function.
 	 * )
 	 */
 
@@ -163,7 +164,7 @@ void logger::enable()
 int logger::get_log_level()
 {
 	/* Get the log level
-	 * 
+	 *
 	 * Return value
 	 * ============
 	 * Integer, the log level of the current logger.
@@ -220,4 +221,3 @@ void logger::enable_terminal_output()
 	// Enable the terminal output again.
 	terminal_output_enabled = true;
 }
-
