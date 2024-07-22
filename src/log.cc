@@ -151,11 +151,11 @@ void logger::enable()
 {
 	/*
 	 * This funciton it used to enable the logger again.
-	 * (
-	 * 	The logger is enabled when it is created.
-	 * 	You only need to use it when the logger is disabled by you
-	 *  with the disable() function.
-	 * )
+	 *
+	 * > The logger is enabled when it is created.
+	 * > You only need to use it when the logger is disabled by you
+	 * > with the disable() function.
+	 *
 	 */
 
 	enabled = true;
