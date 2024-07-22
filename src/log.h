@@ -1,7 +1,8 @@
 /* ===============================================================================
  * log.cc | A light-weight and easy-to-use logging library for C++
- * =========================================
+ * ===============================================================================
  * License : MIT License
+ *
  * Copyright (c) 2024 Gordon Zhang
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -86,4 +87,3 @@ class logger {
 		bool				terminal_output_enabled;
 };
 #endif // LOG_H_
-
