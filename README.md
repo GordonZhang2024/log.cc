@@ -2,6 +2,10 @@
 
 A simple logging library for C++
 
+![GitHub License](https://img.shields.io/github/license/GordonZhang2024/log.cc)
+![Static Badge](https://img.shields.io/badge/love-love?label=%E2%9D%A4%EF%B8%8FMade%20with&labelColor=black&color=red)
+
+
 ## Usage
 > Log.cc is very easy to use.
 >
