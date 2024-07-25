@@ -3,10 +3,9 @@
 A simple logging library for C++
 
 ## Usage
-Log.cc is very easy to use.
-
-
-To use log.cc, you only need to copy `src/log.cc` and `src/log.h` to your own source directory.
+> Log.cc is very easy to use.
+>
+> To use log.cc for your own project, you only need to copy `src/log.cc` and `src/log.h` to your own source directory.
 
 ### Example
 
@@ -22,8 +21,9 @@ int main()
 
 ```
 
-#### Available levels
-
+> [!NOTE]
+> #### Available levels
+> 
 > - TRACE
 > - DEBUG
 > - INFO
@@ -44,8 +44,8 @@ l.log(WARNING, "%d", 1);
 ```
 > [!TIP]
 > ### More info
-> There are also many useful functions in *log.cc*.
-> You can view the [Wiki page](https://github.com/GordonZhang2024/log.cc/wiki/Log.cc-usage) for more info.
+> **There are also many useful functions in *log.cc***.
+> **You can view the [Wiki page](https://github.com/GordonZhang2024/log.cc/wiki/Log.cc-usage) for more info.**
 
 
 ## License
