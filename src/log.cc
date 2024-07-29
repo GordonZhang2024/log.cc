@@ -83,7 +83,7 @@ void logger::log(int level, const char *format, ...)
 	if (level >= logLevel && enabled) {
 		lock = true;
 		if (terminalOutputEnabled) {
-			std::clog << levelColor	<< levelText		<< NORMAL	<< TAB
+			std::clog << levelColor		<< levelText		<< NORMAL	<< TAB
 				  << BOLD		<< formattedTime    	<< NORMAL	<< TAB
 				  <<message							<< std::endl;
 
@@ -97,7 +97,7 @@ void logger::log(int level, const char *format, ...)
 			lock = true;
 			log_output << levelText	<< TAB
 				   << formattedTime	<< TAB
-				   <<message		<< std::endl;
+				   << message		<< std::endl;
 			log_output << std::endl;
 
 			// Unlock.
@@ -222,3 +222,59 @@ void logger::enableTerminalOutput()
 	// Enable the terminal output again.
 	terminalOutputEnabled = true;
 }
+
+
+std::string replaceSpaces(char *text)
+{
+	/*
+	 * This function is used to format the time for the filename generator.
+	 */
+
+	std::string sText = text;
+	
+	for (	std::string::iterator iter = sText.begin();
+		iter < sText.end();
+		++iter
+	) {
+		char currentChar = *iter;
+		if (currentChar == ' ')
+			*iter = '_';
+	}
+
+	sText.pop_back();  // Remove the "\n" at the end.
+
+	return sText;
+}
+
+
+
+std::string generateFilename(std::string name, std::string filenameExtension)
+{
+	/*
+	 * Generate a file name.
+	 *
+	 * Arguments
+	 * =========
+	 * - name:
+	 *   > The name of your application, "log" by default
+	 * - filenameExtension:
+	 *   > The filename extension for your log file, "txt" by default.
+	 *   > Note that you don't have to include a dot in it.
+	 *   > Filename extensions do not matter for Unix-like Operating Systems.
+	 *   > However, it will be greate to customize your own filename extension, 
+	 *   > you may want something like ".log" instead of ".txt".
+	 *
+	 */
+
+	// Get the time and format it.
+	time_t timeNow = time(0);
+	char *cTime = ctime(&timeNow);
+	std::string formattedTime = replaceSpaces(cTime);
+
+	std::string filename;
+
+	filename = name + "-" + formattedTime + "." + filenameExtension;
+
+	return filename;
+}
+

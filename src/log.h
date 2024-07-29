@@ -47,9 +47,7 @@
 #define NORMAL		"\x1b[0m"
 #define BOLD		"\x1b[1m"
 
-
-char generateFilename(const char *name="log");
-
+std::string generateFilename(std::string name="log", std::string filenameExtension="txt");
 
 class logger {
 	public:

@@ -29,6 +29,7 @@
 
 using std::cout;
 using std::endl;
+using std::string;
 
 /*
  * This is the example program.
@@ -96,12 +97,19 @@ int main()
 	 */
 	l.log(INFO, "This message is only shown in the log file.");
 	l.enableTerminalOutput(); //Enable the terminal output again.
+	
+	
+	string filename = generateFilename("ExampleApp");
+	
+	cout	<< "Log.cc can automatically generate a filename for your log files.\nFor example, " << filename << " this time."
+		<< endl
+		<< endl;
 
 	cout	<< "Now you can take a look at the files in this directory."	<< endl
-			<< "You can find log.txt and another-log.txt."			<< endl
-			<< "They are all created by this program."			<< endl
-			<< "You can also find an extra log message which is not shown in the terminal."
-			<< endl;
+		<< "You can find log.txt and another-log.txt."			<< endl
+		<< "They are all created by this program."			<< endl
+		<< "You can also find an extra log message which is not shown in the terminal."
+		<< endl;
 
 	/*
 	 * That's all. I hope you will like this logging library.
