@@ -39,10 +39,10 @@ int main()
 {
 	logger l("log.txt");
 
-	l.add_log_file("another-log.txt"); // Add another log file
+	l.addLogFile("another-log.txt"); // Add another log file
 
 	// Clear the existing log file.
-	l.clear_log();
+	l.clearLog();
 
 	cout << endl;
 	cout << "========== This is the example program for log.cc. =======================" << endl;
@@ -72,9 +72,9 @@ int main()
 	 * Set the log level to warning.
 	 *Now only the messages that are more important than WARNING (or as important as WARNING) can be shown.
 	 */
-	l.set_log_level(WARNING);
+	l.setLogLevel(WARNING);
 
-	auto current_level = l.get_log_level();
+	auto current_level = l.getLogLevel();
 
 	l.log(WARNING, "Current log level: %d", current_level);
 
@@ -87,15 +87,15 @@ int main()
 	cout << ">> You can use an integer or double (float) as the log message." << endl;
 	cout << endl;
 
-	l.set_log_level(DEBUG);
+	l.setLogLevel(DEBUG);
 	
-	l.disable_terminal_output();
+	l.disableTerminalOutput();
 	/*
 	 * Now the terminal output is disabled.
 	 * The log will only be written to the log file.
 	 */
 	l.log(INFO, "This message is only shown in the log file.");
-	l.enable_terminal_output(); //Enable the terminal output again.
+	l.enableTerminalOutput(); //Enable the terminal output again.
 
 	cout	<< "Now you can take a look at the files in this directory."	<< endl
 			<< "You can find log.txt and another-log.txt."			<< endl

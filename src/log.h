@@ -48,17 +48,17 @@
 #define BOLD		"\x1b[1m"
 
 
-char generate_filename(const char *name="log");
+char generateFilename(const char *name="log");
 
 
 class logger {
 	public:
 		logger(const char *filename)
 		{
-			log_files.push_back(filename);
+			logFiles.push_back(filename);
 			lock = false;
 			enabled = true;
-			terminal_output_enabled = true;
+			terminalOutputEnabled = true;
 		}
 
 		logger()
@@ -67,23 +67,23 @@ class logger {
 			enabled = true;
 		}
 
-		std::vector<const char*>	log_files;
+		std::vector<const char*>	logFiles;
 		void				log(int level, const char   *message, ...);
-		void				clear_log();
-		void				clear_log(int index);
-		void				set_log_file(std::ofstream &file);
-		void				set_log_level(int level);
+		void				clearLog();
+		void				clearLog(int index);
+		void				setLogFile(std::ofstream &file);
+		void				setLogLevel(int level);
 		void				disable();
 		void				enable();
-		int				get_log_level();
-		void				add_log_file(const char *filename);
-		void				disable_terminal_output();
-		void				enable_terminal_output();
+		int				getLogLevel();
+		void				addLogFile(const char *filename);
+		void				disableTerminalOutput();
+		void				enableTerminalOutput();
 
 	private:
-		int				log_level = 0;
+		int				logLevel = 0;
 		bool				lock;
 		bool				enabled;
-		bool				terminal_output_enabled;
+		bool				terminalOutputEnabled;
 };
 #endif // LOG_H_

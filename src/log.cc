@@ -31,7 +31,7 @@ std::string levels[6]		= {
 	"TRACE",    "DEBUG",    "INFO",
 	"WARNING",  "ERROR",    "FATAL"
 };
-std::string level_colors[6]	= {
+std::string levelColors[6]	= {
 	"\x1b[94m", "\x1b[36m", "\x1b[32m",
 	"\x1b[33m", "\x1b[31m", "\x1b[35m"
 };
@@ -52,12 +52,12 @@ void logger::log(int level, const char *format, ...)
 	assert(level <= 5);  // The log level shouldn't be >= 5.
 
 	// Get the time and format it.
-	time_t time_now = time(0);
-	char *formatted_time = ctime(&time_now);
+	time_t timeNow = time(0);
+	char *formattedTime = ctime(&timeNow);
 
 	// Get the log level string and log level color.
-	std::string level_text = levels[level];
-	std::string level_color = level_colors[level];
+	std::string levelText = levels[level];
+	std::string levelColor = levelColors[level];
 
 
 	// Format the log message.
@@ -80,23 +80,23 @@ void logger::log(int level, const char *format, ...)
 		/* Do nothing. Just wait.*/
 	}
 	// Do terminal output if it is enabled.
-	if (level >= log_level && enabled) {
+	if (level >= logLevel && enabled) {
 		lock = true;
-		if (terminal_output_enabled) {
-			std::clog << level_color	<< level_text		<< NORMAL	<< TAB
-				  << BOLD		<< formatted_time    	<< NORMAL	<< TAB
+		if (terminalOutputEnabled) {
+			std::clog << levelColor	<< levelText		<< NORMAL	<< TAB
+				  << BOLD		<< formattedTime    	<< NORMAL	<< TAB
 				  <<message							<< std::endl;
 
 			std::clog << std::endl;
 		}
 
-		for (int file = 0; file < log_files.size(); ++file) {
+		for (int file = 0; file < logFiles.size(); ++file) {
 			std::ofstream log_output;
-			const char *current_file = log_files[file];
+			const char *current_file = logFiles[file];
 			log_output.open(current_file, std::ios::app);
 			lock = true;
-			log_output << level_text	<< TAB
-				   << formatted_time	<< TAB
+			log_output << levelText	<< TAB
+				   << formattedTime	<< TAB
 				   <<message		<< std::endl;
 			log_output << std::endl;
 
@@ -109,7 +109,7 @@ void logger::log(int level, const char *format, ...)
 }
 
 
-void logger::set_log_level(int level)
+void logger::setLogLevel(int level)
 {
 	/*
 	 * Set the log level.
@@ -128,7 +128,7 @@ void logger::set_log_level(int level)
 	 */
 
 	assert(level <= 5); // The log level shouldn't be >= 5.
-	log_level = level;
+	logLevel = level;
 }
 
 
@@ -162,7 +162,7 @@ void logger::enable()
 }
 
 
-int logger::get_log_level()
+int logger::getLogLevel()
 {
 	/* Get the log level
 	 *
@@ -170,21 +170,21 @@ int logger::get_log_level()
 	 * ============
 	 * Integer, the log level of the current logger.
 	 */
-	return log_level;
+	return logLevel;
 }
 
 
-void logger::clear_log()
+void logger::clearLog()
 {
 	// Clear all existing log files.
-	for (int file = 0; file < log_files.size(); ++file) {
-		std::ofstream fout(log_files[file]);
+	for (int file = 0; file < logFiles.size(); ++file) {
+		std::ofstream fout(logFiles[file]);
 		fout << "";
 	}
 }
 
 
-void logger::clear_log(int index)
+void logger::clearLog(int index)
 {
 	/*
 	 * Clear a spectific log file.
@@ -192,33 +192,33 @@ void logger::clear_log(int index)
 	 * for example, index=0 means the first log file.
 	 */
 
-	std::ofstream fout(log_files[index]);
+	std::ofstream fout(logFiles[index]);
 	fout << "";
 }
 
 
-void logger::add_log_file(const char *log_file)
+void logger::addLogFile(const char *log_file)
 {
 	/*
 	 * Add a log file.
 	 * The log message will me written to all the log files.
 	 */
-	log_files.push_back(log_file);
+	logFiles.push_back(log_file);
 }
 
 
-void logger::disable_terminal_output()
+void logger::disableTerminalOutput()
 {
 	/*
 	 * The log message will not be shown oon the terminal
 	 * if the terminal_output is disabled.
 	 */
-	terminal_output_enabled = false;
+	terminalOutputEnabled = false;
 }
 
 
-void logger::enable_terminal_output()
+void logger::enableTerminalOutput()
 {
 	// Enable the terminal output again.
-	terminal_output_enabled = true;
+	terminalOutputEnabled = true;
 }
