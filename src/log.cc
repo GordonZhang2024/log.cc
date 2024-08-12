@@ -22,6 +22,7 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
+ * ===============================================================================
  */
 
 #include "log.h"
@@ -55,7 +56,7 @@ void logger::log(int level, const char *format, ...)
 	time_t timeNow = time(0);
 	char *formattedTime = ctime(&timeNow);
 
-	// Get the log level string and log level color.
+	// Get the log level std::string and log level color.
 	std::string levelText = levels[level];
 	std::string levelColor = levelColors[level];
 
@@ -276,5 +277,117 @@ std::string generateFilename(std::string name, std::string filenameExtension)
 	filename = name + "-" + formattedTime + "." + filenameExtension;
 
 	return filename;
+}
+
+
+
+int getLongest(table t)
+{
+	/*
+	 * Get the length of the longest item in the table.
+	 */
+
+	int longest = 0;
+
+	for (table::iterator iterOfRow = t.begin(); iterOfRow < t.end(); ++iterOfRow) {
+		row currentRow = *iterOfRow;
+		for (row::iterator iterOfItem = currentRow.begin(); iterOfItem < currentRow.end(); ++iterOfItem) {
+			std::string currentItem = *iterOfItem;
+			int lenOfItem = currentItem.size();
+
+			if (lenOfItem >= longest)
+				longest = lenOfItem;
+		}
+	}
+
+	++longest;
+	return longest;
+}
+
+
+int getLongestRow(table t)
+{
+	/*
+	 * Get the length of the longest row in the table.
+	 */
+
+	int longest = 0;
+
+	for (table::iterator iterOfRow = t.begin(); iterOfRow < t.end(); ++iterOfRow) {
+		row currentRow = *iterOfRow;
+		if (currentRow.size() >  longest)
+			longest = currentRow.size();
+	}
+
+	++longest;
+
+	int longestItem = getLongest(t);
+	longest *= longestItem;
+
+	return longest;
+}
+
+
+std::string formatItem(std::string &s, int len)
+{
+	/*
+	 * Format an item to make it as long as any other item in the table.
+	 */
+
+	while (s.size() < len)
+		s += " ";
+
+	return s;
+}
+
+
+void split(int len)
+{
+	/*
+	 * Split (Used for printing a table)
+	 */
+
+	std::cout << " +=";
+
+	while (len > 0) {
+		std::cout << "=";
+		--len;
+	}
+
+	std::cout << "+" << std::endl;
+}
+
+
+void log(table t)
+{
+	/*
+	 * Output a table.
+	 *
+	 * Arguments
+	 * =========
+	 * - table
+	 *   > type: table, which is a vector<string>.
+	 */
+
+	int longest = getLongest(t);
+	int longestRow = getLongestRow(t);
+
+	split(longestRow);
+
+	for (table::iterator iterOfRow = t.begin(); iterOfRow < t.end(); ++iterOfRow) {
+		row currentRow = *iterOfRow;
+
+		std::cout << " | ";
+
+		for (row::iterator iterOfItem = currentRow.begin(); iterOfItem < currentRow.end(); ++iterOfItem) {
+			std::string currentItem = *iterOfItem;
+
+			formatItem(currentItem, longest);
+
+			std::cout << currentItem << "|" << " ";
+		}
+		std::cout << std::endl;
+		split(longestRow);
+	}
 }
 
