@@ -52,7 +52,6 @@ l.log(WARNING, "%d", 1);
 
 > [!TIP]
 > ### More info
-> **There are also many useful functions in *log.cc***.
 > **You can view the [Wiki page](https://github.com/GordonZhang2024/log.cc/wiki/Log.cc-usage) for more info.**
 
 
