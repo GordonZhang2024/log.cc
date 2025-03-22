@@ -47,8 +47,7 @@ You can use the `log()` function in this way, just like `printf()`:
 ```cpp
 l.log(WARNING, "%d", 1);
 ```
-> [!IMPORTANT]
-> Don't forget to set the log level (which is the first argument of the `log()` function).
+
 
 > [!TIP]
 > ### More info
